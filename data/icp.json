@@ -1,0 +1,162 @@
+{
+  "_comment": "Ideal Customer Profile (ICP) for a B2B data-infrastructure SaaS product. Scoring node reads this file to evaluate EnrichedLead records.",
+  "icp_version": "1.0.0",
+  "product": "DataPilot — modern data stack orchestration platform",
+
+  "firmographic_criteria": {
+    "company_size": {
+      "label": "Employee count",
+      "accepted_bands": ["51-200", "201-500", "501-1000", "1001-5000"],
+      "preferred_bands": ["201-500", "501-1000"],
+      "weight": 20,
+      "_comment": "Sweet-spot is Series B / Series C companies. <50 too early; >5000 have custom infra teams."
+    },
+    "annual_revenue_usd": {
+      "label": "Annual revenue (USD)",
+      "accepted_bands": ["$10M-$50M", "$50M-$200M", "$200M-$500M"],
+      "preferred_bands": ["$50M-$200M"],
+      "weight": 15
+    },
+    "industries": {
+      "label": "Target industries",
+      "tier_1": [
+        "SaaS",
+        "FinTech",
+        "HealthTech",
+        "EdTech",
+        "MarTech"
+      ],
+      "tier_2": [
+        "E-commerce",
+        "Logistics & Supply Chain",
+        "Insurance",
+        "Media & Publishing"
+      ],
+      "excluded": [
+        "Government",
+        "Non-profit",
+        "Primary / Heavy Industry"
+      ],
+      "weight": 20
+    },
+    "geography": {
+      "label": "Primary operating geography",
+      "accepted": ["US", "CA", "GB", "EU", "AU"],
+      "preferred": ["US", "GB"],
+      "weight": 5
+    }
+  },
+
+  "role_criteria": {
+    "label": "Buyer persona / target roles",
+    "champion_roles": [
+      "VP of Data",
+      "Head of Data Engineering",
+      "Director of Analytics",
+      "Chief Data Officer",
+      "VP Analytics"
+    ],
+    "influencer_roles": [
+      "Data Engineer",
+      "Analytics Engineer",
+      "Senior Data Scientist",
+      "Engineering Manager",
+      "CTO",
+      "VP Engineering"
+    ],
+    "economic_buyer_roles": [
+      "CFO",
+      "COO",
+      "CEO"
+    ],
+    "low_value_roles": [
+      "Intern",
+      "Student",
+      "Sales Development Representative",
+      "Recruiter"
+    ],
+    "weight": 20
+  },
+
+  "tech_stack_criteria": {
+    "label": "Technology signals that raise ICP fit",
+    "positive_signals": [
+      "Snowflake",
+      "Databricks",
+      "dbt",
+      "Redshift",
+      "BigQuery",
+      "Fivetran",
+      "Airbyte",
+      "Looker",
+      "Tableau",
+      "Apache Spark",
+      "Kubernetes",
+      "Terraform"
+    ],
+    "negative_signals": [
+      "Microsoft Access",
+      "FoxPro",
+      "Legacy Oracle OLAP",
+      "COBOL"
+    ],
+    "weight": 10
+  },
+
+  "buying_signal_keywords": {
+    "label": "Keywords / phrases that indicate active buying intent",
+    "high_intent": [
+      "pricing",
+      "trial",
+      "demo request",
+      "ROI calculator",
+      "migrate from",
+      "replace",
+      "evaluate",
+      "proof of concept",
+      "POC",
+      "budget approved",
+      "Q3 initiative",
+      "Q4 initiative",
+      "modernise data stack",
+      "modernize data stack",
+      "data mesh",
+      "data lakehouse"
+    ],
+    "moderate_intent": [
+      "data pipeline",
+      "pipeline reliability",
+      "data quality",
+      "observability",
+      "cost reduction",
+      "cost optimisation",
+      "cost optimization",
+      "scaling issues",
+      "hiring data engineer",
+      "growing data team"
+    ],
+    "low_intent": [
+      "curious",
+      "newsletter",
+      "blog post",
+      "just browsing"
+    ],
+    "weight": 10
+  },
+
+  "scoring_thresholds": {
+    "_comment": "Used by the classification node to assign a tier based on the numeric score.",
+    "HOT": {
+      "min_score": 70,
+      "description": "Strong ICP fit — route to SDR for immediate personalised outreach."
+    },
+    "NURTURE": {
+      "min_score": 40,
+      "description": "Moderate fit — enrol in marketing nurture sequence; revisit in 30 days."
+    },
+    "DISQUALIFY": {
+      "min_score": 0,
+      "description": "Poor fit — log and close. Do not invest outreach resources."
+    }
+  }
+}

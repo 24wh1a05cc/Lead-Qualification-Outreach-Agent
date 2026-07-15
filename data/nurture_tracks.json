@@ -1,0 +1,86 @@
+{
+  "_comment": "Nurture track definitions for NURTURE-tier leads. The segment.py node evaluates matched_criteria and unmatched_criteria from ICPScore against these rules to assign a specific track instead of a generic 'nurture' bucket.",
+  "tracks_version": "1.0.0",
+
+  "tracks": [
+    {
+      "track_id": "right-industry-no-signal",
+      "label": "Right industry, no buying signal yet",
+      "description": "Lead's company is in a target industry and role is credible, but there is no detected buying intent. Likely early-stage awareness. Nurture with educational content; re-score after 30 days.",
+      "re_score_days": 30,
+      "sequence": "educational_drip_v2",
+      "assignment_rules": {
+        "_comment": "All required_matched must be satisfied AND at least one required_unmatched must be present.",
+        "required_matched": [
+          "industry:"
+        ],
+        "required_unmatched": [
+          "buying_signals:none_detected",
+          "buying_signals:low_intent_only"
+        ],
+        "forbidden_matched": [],
+        "priority": 1
+      }
+    },
+    {
+      "track_id": "right-industry-wrong-size",
+      "label": "Right industry, company size outside preferred range",
+      "description": "Lead's industry and role are on-target but company is too small or too large for our preferred ICP band. Park and revisit when they grow (or shrink) into the sweet spot, or when an enterprise tier is available.",
+      "re_score_days": 60,
+      "sequence": "size_watch_nurture_v1",
+      "assignment_rules": {
+        "required_matched": [
+          "industry:"
+        ],
+        "required_unmatched": [
+          "company_size:"
+        ],
+        "forbidden_matched": [],
+        "priority": 2
+      }
+    },
+    {
+      "track_id": "influencer-not-champion",
+      "label": "Influencer role, not a direct champion",
+      "description": "Contact is an influencer (e.g. Data Engineer, Engineering Manager) rather than a buying champion (VP Data, CDO). Good signal — they often surface pain points before the champion does. Nurture with technical content and ask them to introduce us to the data leader.",
+      "re_score_days": 21,
+      "sequence": "technical_influencer_v3",
+      "assignment_rules": {
+        "required_matched": [
+          "role:",
+          "industry:"
+        ],
+        "required_unmatched": [],
+        "forbidden_matched": [
+          "(champion)"
+        ],
+        "priority": 3
+      }
+    },
+    {
+      "track_id": "right-fit-borderline-score",
+      "label": "Borderline score — near HOT threshold",
+      "description": "Lead scored in the upper NURTURE band (55–69), meaning most ICP criteria matched but one or two gaps remain (e.g. geography, revenue band). Fast-track: outreach within 7 days with a light-touch personalised note rather than a full nurture sequence.",
+      "re_score_days": 7,
+      "sequence": "fast_track_nurture_v1",
+      "assignment_rules": {
+        "required_matched": [],
+        "required_unmatched": [],
+        "score_range": {
+          "min": 55,
+          "max": 69
+        },
+        "forbidden_matched": [],
+        "priority": 0
+      }
+    }
+  ],
+
+  "fallback_track": {
+    "track_id": "general-nurture",
+    "label": "General nurture",
+    "description": "Catch-all for NURTURE leads that do not match any specific track criteria. Enrol in standard marketing sequence.",
+    "re_score_days": 45,
+    "sequence": "general_nurture_v1"
+  }
+}

@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Vertex Analytics",
+    "domain": "vertexanalytics.io",
+    "industry": "SaaS",
+    "employee_count": 320,
+    "annual_revenue_usd": "$50M-$200M",
+    "location": "US",
+    "tech_stack": ["Redshift", "dbt", "Looker", "Fivetran"],
+    "buying_signal_keywords": ["pipeline reliability", "modernize data stack", "scaling issues"]
+  },
+  {
+    "name": "FinTrust AI",
+    "domain": "fintrust.ai",
+    "industry": "FinTech",
+    "employee_count": 210,
+    "annual_revenue_usd": "$50M-$200M",
+    "location": "US",
+    "tech_stack": ["Snowflake", "Fivetran", "Tableau", "dbt"],
+    "buying_signal_keywords": ["POC", "evaluate", "replace", "proof of concept"]
+  },
+  {
+    "name": "HealthHive",
+    "domain": "healthhive.com",
+    "industry": "HealthTech",
+    "employee_count": 850,
+    "annual_revenue_usd": "$200M-$500M",
+    "location": "US",
+    "tech_stack": ["BigQuery", "Databricks", "Tableau", "Terraform"],
+    "buying_signal_keywords": ["migrate from", "RFP", "shortlist", "pricing"]
+  },
+  {
+    "name": "Clarity Marketing Tech",
+    "domain": "claritymktg.com",
+    "industry": "MarTech",
+    "employee_count": 145,
+    "annual_revenue_usd": "$10M-$50M",
+    "location": "US",
+    "tech_stack": ["BigQuery", "Looker"],
+    "buying_signal_keywords": ["growing data team", "hiring data engineer"]
+  },
+  {
+    "name": "Edvantage Learning",
+    "domain": "edvantage.com",
+    "industry": "EdTech",
+    "employee_count": 180,
+    "annual_revenue_usd": "$10M-$50M",
+    "location": "GB",
+    "tech_stack": ["Redshift", "Tableau"],
+    "buying_signal_keywords": ["data quality", "pipeline reliability", "evaluate"]
+  },
+  {
+    "name": "TradeFlow Logistics",
+    "domain": "tradeflow.io",
+    "industry": "Logistics & Supply Chain",
+    "employee_count": 430,
+    "annual_revenue_usd": "$50M-$200M",
+    "location": "EU",
+    "tech_stack": ["Snowflake", "Airbyte", "dbt"],
+    "buying_signal_keywords": ["cost optimization", "data pipeline", "observability"]
+  },
+  {
+    "name": "NovaSure Insurance",
+    "domain": "novasure.com",
+    "industry": "Insurance",
+    "employee_count": 2200,
+    "annual_revenue_usd": "$200M-$500M",
+    "location": "US",
+    "tech_stack": ["Redshift", "Tableau", "Kubernetes"],
+    "buying_signal_keywords": ["renewal", "cost reduction", "modernize data stack"]
+  },
+  {
+    "name": "BrightMedia Publishing",
+    "domain": "brightmedia.co",
+    "industry": "Media & Publishing",
+    "employee_count": 95,
+    "annual_revenue_usd": "$10M-$50M",
+    "location": "GB",
+    "tech_stack": ["BigQuery", "Looker"],
+    "buying_signal_keywords": ["data quality", "cost optimisation"]
+  },
+  {
+    "name": "CartPeak Commerce",
+    "domain": "cartpeak.com",
+    "industry": "E-commerce",
+    "employee_count": 560,
+    "annual_revenue_usd": "$50M-$200M",
+    "location": "US",
+    "tech_stack": ["Snowflake", "dbt", "Fivetran", "Looker"],
+    "buying_signal_keywords": ["scaling issues", "data mesh", "budget approved"]
+  },
+  {
+    "name": "PulseHR",
+    "domain": "pulsehr.io",
+    "industry": "SaaS",
+    "employee_count": 78,
+    "annual_revenue_usd": "$10M-$50M",
+    "location": "CA",
+    "tech_stack": ["BigQuery", "dbt"],
+    "buying_signal_keywords": ["trial", "demo request", "evaluate"]
+  },
+  {
+    "name": "DataSphere Labs",
+    "domain": "datasphere.io",
+    "industry": "SaaS",
+    "employee_count": 390,
+    "annual_revenue_usd": "$50M-$200M",
+    "location": "US",
+    "tech_stack": ["Databricks", "Apache Spark", "Terraform", "dbt", "Snowflake"],
+    "buying_signal_keywords": ["data lakehouse", "modernize data stack", "POC", "budget approved"]
+  },
+  {
+    "name": "GovTrack Systems",
+    "domain": "govtrack.gov",
+    "industry": "Government",
+    "employee_count": 3400,
+    "annual_revenue_usd": "$200M-$500M",
+    "location": "US",
+    "tech_stack": ["Legacy Oracle OLAP", "COBOL"],
+    "buying_signal_keywords": []
+  },
+  {
+    "name": "Meridian Pharma",
+    "domain": "meridianpharma.com",
+    "industry": "Primary / Heavy Industry",
+    "employee_count": 12000,
+    "annual_revenue_usd": "$200M-$500M",
+    "location": "EU",
+    "tech_stack": ["Microsoft Access", "FoxPro"],
+    "buying_signal_keywords": []
+  }
+]
