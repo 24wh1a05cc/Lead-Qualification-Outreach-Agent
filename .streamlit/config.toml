@@ -7,7 +7,7 @@ textColor       = "#e2e8f0"        # slate-200 — primary text
 font            = "sans serif"
 
 [server]
-headless        = false
+headless        = true
 runOnSave       = false
 
 [browser]
