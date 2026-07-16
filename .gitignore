@@ -17,12 +17,17 @@ venv/
 env/
 ENV/
 
-# ── Runtime / generated data ──────────────────────────────────────────────────
-audit_log.jsonl
+# ── Runtime audit log ─────────────────────────────────────────────────────────
+# The live runtime file at the project root is excluded (it grows unboundedly).
+# The seed file committed for first-load demo is kept via the negation below.
+/audit_log.jsonl
+!audit_log.seed.jsonl
 
 # ── Eval reports (generated artifacts) ───────────────────────────────────────
-eval/eval_report.json
-eval/eval_report.md
+# The live generated reports are excluded; committed seed copies are kept.
+/eval/eval_report.json
+/eval/eval_report.md
+!eval/eval_report.seed.json
 
 # ── Distribution / packaging ──────────────────────────────────────────────────
 dist/

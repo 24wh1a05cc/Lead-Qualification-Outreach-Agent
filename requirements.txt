@@ -1,16 +1,20 @@
-# Core agent orchestration
-langgraph==0.2.28
-langchain-core==0.3.15
+# ── Lead Qualification & Outreach Agent — Python dependencies ─────────────────
+#
+# Pinned to the versions used in development and verified by the eval suite.
+# langgraph / langchain-core are NOT listed here: the pipeline is implemented
+# as plain Python functions; no LangGraph graph is constructed at runtime.
+# If you add graph-based orchestration in a future step, re-add them.
 
-# Data validation and modeling
-pydantic==2.9.2
-email-validator==2.2.0   # Required for pydantic.EmailStr
+# Data validation and modelling
+pydantic==2.13.4
+email-validator==2.2.0      # Required for pydantic.EmailStr
 
-# LLM client (OpenAI-compatible; swap for Anthropic/Bedrock in later steps)
-openai==1.51.2
+# LLM client — optional; app runs in rule-based template mode without a key.
+# Set OPENAI_API_KEY as a Render environment variable to enable LLM drafting.
+openai==2.44.0
 
 # Web UI
 streamlit==1.58.0
 
 # Utility
-python-dotenv==1.0.1
+python-dotenv==1.2.2

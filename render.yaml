@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: lead-qualification-agent
+    env: python
+    region: oregon          # change to frankfurt / singapore as needed
+    plan: free              # upgrade to starter for persistent disk support
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run ui/app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      # OPENAI_API_KEY is optional — app runs in rule-based mode without it.
+      # Set this in the Render dashboard (Environment tab) to enable LLM drafting.
+      # - key: OPENAI_API_KEY
+      #   sync: false        # marks it as a secret; enter value in the dashboard
+
+    # NOTE on audit_log.jsonl persistence:
+    # Render's default filesystem is ephemeral — audit_log.jsonl resets on every
+    # redeploy or restart.  The app handles this gracefully (creates the file on
+    # first write).  To persist audit data across deploys, attach a Render Disk:
+    #   disk:
+    #     name: audit-data
+    #     mountPath: /var/data
+    # Then set:  AUDIT_LOG_PATH=/var/data/audit_log.jsonl
+    # (free plan does not support persistent disks — upgrade to starter or above)
