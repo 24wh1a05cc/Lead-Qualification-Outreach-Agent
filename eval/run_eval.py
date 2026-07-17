@@ -48,6 +48,10 @@ EVAL_DIR = PROJECT_ROOT / "eval"
 DATA_DIR = PROJECT_ROOT / "data"
 sys.path.insert(0, str(PROJECT_ROOT))
 
+# ── Load .env so OPENROUTER_API_KEY is available if present ──────────────────
+from dotenv import load_dotenv  # noqa: E402
+load_dotenv(PROJECT_ROOT / ".env")
+
 
 # ---------------------------------------------------------------------------
 # Result types

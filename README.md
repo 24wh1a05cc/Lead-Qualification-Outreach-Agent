@@ -16,7 +16,8 @@ pip install -r requirements.txt
 
 # 3. Configure environment
 cp .env.example .env
-# OPENAI_API_KEY is optional — the pipeline runs in rule-based template mode without it.
+# Paste your OpenRouter API key as OPENROUTER_API_KEY in .env to enable LLM drafting.
+# The pipeline runs in rule-based template mode without it.
 
 # 4. Launch the Streamlit UI (recommended for demos)
 streamlit run ui/app.py

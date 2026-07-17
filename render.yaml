@@ -9,10 +9,12 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.0"
-      # OPENAI_API_KEY is optional — app runs in rule-based mode without it.
+      # OPENROUTER_API_KEY is optional — app runs in rule-based template mode without it.
       # Set this in the Render dashboard (Environment tab) to enable LLM drafting.
-      # - key: OPENAI_API_KEY
+      # - key: OPENROUTER_API_KEY
       #   sync: false        # marks it as a secret; enter value in the dashboard
+      # - key: OPENROUTER_MODEL
+      #   value: "openai/gpt-4o-mini"   # change to any model on openrouter.ai/models
 
     # NOTE on audit_log.jsonl persistence:
     # Render's default filesystem is ephemeral — audit_log.jsonl resets on every

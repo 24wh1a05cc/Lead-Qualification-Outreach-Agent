@@ -29,6 +29,10 @@ _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
+# ── Load environment variables from .env ─────────────────────────────────────
+from dotenv import load_dotenv  # noqa: E402
+load_dotenv(_PROJECT_ROOT / ".env")
+
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -945,6 +949,14 @@ def render_sidebar() -> tuple[str, dict | None]:
         '</div>',
         unsafe_allow_html=True,
     )
+
+    # ── LLM mode indicator ────────────────────────────────────────────────────
+    from llm_client import is_llm_enabled, get_model
+    if is_llm_enabled():
+        st.sidebar.success(f"🤖 LLM mode · `{get_model()}`")
+    else:
+        st.sidebar.info("📋 Template mode · set OPENROUTER_API_KEY in .env to enable LLM drafting")
+
     st.sidebar.markdown("---")
 
     # ── Top-level navigation ──────────────────────────────────────────────────

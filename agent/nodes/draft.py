@@ -13,8 +13,8 @@ Two paths share the same grounding contract:
     template.  Every sentence maps to exactly one field in EnrichedLead, so
     hallucination is structurally impossible.
 
-  Path B — LLM (activated when OPENAI_API_KEY is a real key):
-    Calls an OpenAI-compatible model with a system prompt that:
+  Path B — LLM (activated when OPENROUTER_API_KEY is a real key):
+    Calls an OpenAI-compatible model via OpenRouter with a system prompt that:
       • Provides ONLY the facts present in EnrichedLead as input.
       • Explicitly forbids adding any claim not in that fact list.
       • Explicitly forbids any send, schedule, or action instruction.
@@ -46,14 +46,12 @@ Public API
 from __future__ import annotations
 
 import json
-import os
 import textwrap
 from typing import Final
 
 from agent.models import Classification, DraftedEmail, EnrichedLead, LeadTier
+from llm_client import get_llm_client, get_model, is_llm_enabled
 
-# Sentinel that marks the .env.example placeholder — not a real key.
-_PLACEHOLDER_KEY_PREFIX: Final[str] = "sk-..."
 _PRODUCT_NAME: Final[str] = "DataPilot"
 _SENDER_NAME: Final[str] = "Alex Rivera"
 _SENDER_TITLE: Final[str] = "Solutions Engineer"
@@ -90,14 +88,7 @@ def draft_email(
             "Enforce the HOT gate in the pipeline before calling this function."
         )
 
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    use_llm = (
-        bool(api_key)
-        and not api_key.startswith(_PLACEHOLDER_KEY_PREFIX)
-        and len(api_key) > 20
-    )
-
-    if use_llm:
+    if is_llm_enabled():
         draft = _draft_via_llm(enriched)
         if draft is not None:
             return draft
@@ -286,7 +277,7 @@ def _build_body(
 
 
 # ---------------------------------------------------------------------------
-# Path B — LLM-based drafting (activated by a real OPENAI_API_KEY)
+# Path B — LLM-based drafting (activated by a real OPENROUTER_API_KEY)
 # ---------------------------------------------------------------------------
 
 _LLM_SYSTEM_PROMPT: Final[str] = textwrap.dedent("""\
@@ -323,16 +314,12 @@ _LLM_SYSTEM_PROMPT: Final[str] = textwrap.dedent("""\
 
 def _draft_via_llm(enriched: EnrichedLead) -> DraftedEmail | None:
     """
-    Attempt to draft via LLM. Returns None if the call fails or if the
-    output cannot be verified against EnrichedLead.
+    Attempt to draft via LLM (OpenRouter). Returns None if the call fails or if
+    the output cannot be verified against EnrichedLead.
     """
     try:
-        from openai import OpenAI  # type: ignore[import]
-    except ImportError:
-        return None
-
-    try:
-        client = OpenAI()  # reads OPENAI_API_KEY from env automatically
+        client = get_llm_client()
+        model  = get_model()
 
         facts_block = _build_facts_block(enriched)
         user_message = (
@@ -352,7 +339,7 @@ def _draft_via_llm(enriched: EnrichedLead) -> DraftedEmail | None:
         )
 
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=model,
             temperature=0.3,
             response_format={"type": "json_object"},
             messages=[

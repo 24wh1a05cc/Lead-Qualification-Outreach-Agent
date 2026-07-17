@@ -10,7 +10,7 @@ pydantic==2.13.4
 email-validator==2.2.0      # Required for pydantic.EmailStr
 
 # LLM client — optional; app runs in rule-based template mode without a key.
-# Set OPENAI_API_KEY as a Render environment variable to enable LLM drafting.
+# Set OPENROUTER_API_KEY in .env (or as a Render environment variable) to enable LLM drafting.
 openai==2.44.0
 
 # Web UI
